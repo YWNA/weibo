@@ -8,10 +8,11 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Info_model');
 	}
-	public function index()
+	public function index($cid = NULL)
 	{
 		$this->view_override = FALSE;
-		$this->load->view('welcome');
+		if (empty($cid)) { show_error('客户号不能为空');}
+		$this->load->view('welcome', array('cid'=>$cid));
 	}
 	public function info()
 	{
