@@ -38,6 +38,7 @@ class Info_model extends CI_Model  {
 		$sql = 'SELECT * FROM info where cid='.$cid.' LIMIT '.$num.',1';
 		$count = $this->db->count_all('info');
 		$ret = $this->db->query($sql)->row_array();
+		if(empty($ret)) return $ret;
 		$ret['count'] = $count;
 		$data = array(
 			'baoguan_num' => $ret['baoguan_num'] + 1,

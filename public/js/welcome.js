@@ -1,4 +1,4 @@
-cid=51 //客户ID 即数据库表company中id字段
+cid=5 //客户ID 即数据库表company中id字段
 num=1;
 function closeMain(){
  $(".main").hide();
@@ -6,6 +6,7 @@ function closeMain(){
 function run() {
   $.post('welcome/info',{cid:cid,num:num}, function(data){
     console.log(data.info);
+    if (data.info == null) {$('.marquee').html('<a style="margin-left: 10px;" href="#">客户ID不存在,请重新配置</a>');return;};
     if (data.info.link) {
       var info='<a style="margin-left: 10px;" href="welcome/redirect/'+data.info.link+ '/' + data.info.id+'" target="_blank">'+data.info.title+'</a>';
     } else {

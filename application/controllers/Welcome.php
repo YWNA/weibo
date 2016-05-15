@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 		$cid = $this->input->post("cid");
 		$num = $this->input->post("num");
 		$ret = $this->Info_model->get_show_info($cid, $num);
-		$ret['link'] = urlencode( base64_encode($ret['link']) );
+		if($ret) $ret['link'] = urlencode( base64_encode($ret['link']) );
 		$this->output->set_content_type('application/json')->set_output(json_encode(array('info' => $ret)));
 	}
 	public function redirect($url, $id)
