@@ -1,0 +1,153 @@
+
+#logo {
+    float: none;
+    margin: 100px auto 0;
+    position: relative;
+    width: 240px;
+}
+#logo .description {
+    left: -40px !important;
+    position: absolute;
+    top: -30px !important;
+    transform: rotate(-6deg);
+}
+#logo .description a {
+    color: #666666;
+    font: 16px/16px "Patrick Hand";
+    right: auto;
+    text-decoration: none;
+}
+#logo .description .arrow {
+    background: url("../../Morpheus/images/affix-arrow.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 68px;
+    left: -35px;
+    position: absolute;
+    width: 50px;
+}
+#logo img {
+    border: 0 none;
+    height: auto;
+    margin-right: 20px;
+    vertical-align: bottom;
+    width: 240px;
+}
+#logo .h1 {
+    color: #136f8b;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 45pt;
+    font-weight: normal;
+    text-transform: none;
+}
+#loginPage a {
+    text-decoration: none;
+}
+.loadingPiwik {
+    float: left;
+    margin-left: 16px;
+}
+.loginSection {
+    background-color: #fafafa;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin: 50px auto 0;
+    padding: 30px;
+    width: 360px;
+}
+.loginSection h1 {
+    color: #666;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0 0 30px;
+    position: relative;
+    text-align: center;
+}
+.loginSection form {
+    margin: 0 5px;
+    padding: 15px;
+    position: relative;
+}
+.loginSection form div {
+    margin-bottom: 24px;
+    text-align: center;
+}
+.loginSection .submit {
+    margin-top: 0;
+}
+.loginSection fieldset {
+    border: 0 none;
+}
+.loginSection fieldset.actions {
+    line-height: 35px;
+    margin-top: 10px;
+    width: 315px;
+}
+#login_form_rememberme {
+    vertical-align: middle;
+}
+.loginSection form input[type="text"], .loginSection form input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    color: #555;
+    font-size: 20px;
+    margin: 0 0 15px;
+    padding: 10px 15px 10px 45px;
+    width: 253px;
+}
+#login_form_password, #reset_form_password, #reset_form_password_bis, #login_form_login, #reset_form_login {
+    background: url("../images/login-sprite.png") no-repeat scroll 0 0 #fff;
+}
+#login_form_password, #reset_form_password, #reset_form_password_bis {
+    background-position: 10px -51px;
+}
+#login_form_login, #reset_form_login {
+    background-position: 10px 11px;
+}
+#login_form_submit{
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%) repeat-x scroll 0 0 #d4291f !important;
+    border: 0 none !important;
+    border-radius: 3px !important;
+    color: #fff !important;
+    cursor: pointer;
+    font-family: Verdana,sans-serif !important;
+    font-size: 12px !important;
+    font-weight: normal;
+    line-height: 16px !important;
+    padding: 5px 15px !important;
+    text-align: center;
+    text-decoration: none !important;
+}
+#loginPage .message_error, #loginPage .message {
+    border: 1px solid;
+    margin: 0 auto;
+    padding: 12px;
+}
+#loginPage .message_error {
+    background-color: #ffebe8;
+    border-color: #c00;
+}
+#loginPage .message {
+    background-color: #ffffe0;
+    border-color: #e6db55;
+}
+#nav, #piwik {
+    margin: 0 0 0 8px;
+    padding: 16px;
+}
+#nav {
+    text-align: center;
+}
+#nav a:hover {
+    text-decoration: underline;
+}
+#loginPage #nav a {
+    color: #777;
+}
+#loginPage #piwik a {
+    color: #cdcdcd;
+}
+html.old-ie .ie-hide {
+    display: none;
+}

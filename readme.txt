@@ -1,0 +1,1 @@
+在public/js/welcome.js中定义客户ID,获取相应客户的内容

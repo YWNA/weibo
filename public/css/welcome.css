@@ -1,0 +1,44 @@
+    body{
+      padding:0;
+      margin:0;
+	    
+    }
+    .main {
+      width:100%;
+      height:50px;
+      color:white;
+      background: url('../images/80.png') repeat;
+      line-height: 50px;
+      font-size: 16px;
+position:absolute;
+bottom:0;
+    }
+    .weibo{
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      width:50px;
+      position: absolute;
+      top:0;
+left:10px;
+    }
+    .close{
+      position: absolute;
+      top:0;
+      right:10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: white;
+    }
+    .marquee{
+      height:50px;
+
+      margin: 0 50px 0 50px;
+      padding: 0;
+      position: absolute;
+      top:0;
+    }
+	a{
+	color:white;
+text-decoration:none;
+}
