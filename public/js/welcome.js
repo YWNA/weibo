@@ -14,9 +14,9 @@ $(function(){
     } else {
       var info='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+data.info.title+'</a>';
     }
-    $('.marquee').fadeOut();
     $('.marquee').html(info);
-    $('.marquee').fadeIn();
+    // $('.marquee').fadeIn();
+    // $('.marquee').fadeOut();
     if (num >= data.info.count) {num = 0;console.log(data.info.count)};
      num++;
   })
