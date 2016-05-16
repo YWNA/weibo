@@ -12,7 +12,7 @@ class Home extends CI_Controller {
 		$cid = session_conf('id');
 		if ($_POST) {
 			$title = $this->input->post('title');
-			$link = $this->input->post('link');
+			$link  = $this->input->post('link');
 			$this->Info_model->add_info($cid, $title, $link);
 			redirect('home');
 		}

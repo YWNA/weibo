@@ -10,8 +10,8 @@ class Register extends CI_Controller {
 	public function index()
 	{
 		if ($_POST) {
-			$username = $this->input->post('username');
-			$company = $this->input->post('company');
+			$username  = $this->input->post('username');
+			$company   = $this->input->post('company');
 			$password1 = $this->input->post('password1');
 			$password2 = $this->input->post('password2');
 			if ($password1 != $password2) {

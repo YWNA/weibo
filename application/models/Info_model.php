@@ -34,10 +34,12 @@ class Info_model extends CI_Model  {
 	}
 	public function get_show_info($cid, $num)
 	{
-		$num = $num - 1;
-		$sql = 'SELECT * FROM info where cid='.$cid.' LIMIT '.$num.',1';
-		$count = $this->db->count_all('info');
-		$ret = $this->db->query($sql)->row_array();
+		$sql   = 'SELECT * FROM info where cid='.$cid;
+		$ret   = $this->db->query($sql)->result_array();
+		$count = count($ret);
+		$num   = $num - 1;
+		$sql   = 'SELECT * FROM info where cid='.$cid.' LIMIT '.$num.',1';
+		$ret   = $this->db->query($sql)->row_array();
 		if(empty($ret)) return $ret;
 		$ret['count'] = $count;
 		$data = array(
