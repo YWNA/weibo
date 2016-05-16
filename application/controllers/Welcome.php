@@ -8,7 +8,7 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Info_model');
 	}
-	public function index($cid = NULL)
+	public function cid($cid = NULL)
 	{
 		$this->view_override = FALSE;
 		if (empty($cid)) { show_error('客户号不能为空');}

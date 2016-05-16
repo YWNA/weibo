@@ -21,7 +21,7 @@ function timeto($startdate, $enddate)
   </div>
   <div class="form-group">
     <label class="sr-only" for="link"></label>
-    <input class="form-control" name="link" id="link" value="" width="150" placeholder="跳转链接地址：http://www.baidu.com">
+    <input class="form-control" title="例如：http://www.baidu.com" name="link" id="link" value="" width="150" placeholder="输入完整的URL链接地址">
   </div>
 </form>
 <hr>
