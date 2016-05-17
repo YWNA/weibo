@@ -1,1 +1,2 @@
-在public/js/welcome.js中定义客户ID,获取相应客户的内容
+数据库配置文件路径./application/config/database.php
+数据库SQL文件路径./Db.sql
