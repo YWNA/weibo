@@ -21,5 +21,5 @@ $(function(){
 }
   num=1;
   run()
-  setInterval(run, 5000)
+  setInterval(run, 3000)
 })
