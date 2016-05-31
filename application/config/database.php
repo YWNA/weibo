@@ -5,12 +5,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '54.199.228.76',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'root',
-	'database' => 'news',
+	'database' => 'weibo',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
+	'port'     => '3307',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
