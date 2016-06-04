@@ -12,13 +12,14 @@ class Register extends CI_Controller {
 		if ($_POST) {
 			$username  = $this->input->post('username');
 			$company   = $this->input->post('company');
+			$company_s = $this->input->post('company_s');
 			$password1 = $this->input->post('password1');
 			$password2 = $this->input->post('password2');
 			if ($password1 != $password2) {
 				show_error('密码输入不相同');
 			}
 			if (!$this->Company_model->if_exists_username($username)) {
-				$this->Company_model->register($username, $company, $password1);
+				$this->Company_model->register($username, $company, $company_s, $password1);
 				redirect('/');
 			} else {
 				show_error($username . '已经存在');

@@ -24,6 +24,15 @@ class Company_model extends CI_Model  {
 			return FALSE;
 		}
 	}
+	public function get_company_name_s($guid)
+	{
+		$ret = $this->db->get_where('company', array('guid' => $guid))->row_array();
+		if ($ret) {
+			return $ret['company_name_s'];
+		} else {
+			return FALSE;
+		}
+	}
 	public function login($username, $password)
 	{
 		$ret = $this->db->get_where('company', array('username' => $username))->row_array();
@@ -34,13 +43,15 @@ class Company_model extends CI_Model  {
 		}
 		return FALSE;
 	}
-	public function register($username, $company, $password)
+	public function register($username, $company, $company_s, $password)
 	{
 		$data = array(
-			'username' => $username,
-			'company_name' => $company,
-			'password' => password_hash($password, PASSWORD_DEFAULT),
-			'create_time' => date('Y-m-d H:i:s', time())
+			'guid'           => get_guid(),
+			'username'       => $username,
+			'company_name'   => $company,
+			'company_name_s' => $company_s,
+			'password'       => password_hash($password, PASSWORD_DEFAULT),
+			'create_time'    => date('Y-m-d H:i:s', time())
 		);
 		$this->db->insert('company', $data);
 		$ret = $this->db->insert_id();

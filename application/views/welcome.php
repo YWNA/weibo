@@ -10,7 +10,7 @@
 </head>
 <body >
   <div class="main" >
-    <div class="weibo" cid="<?php echo $cid; ?>">微播:</div>
+    <div class="weibo" guid="<?php echo $guid; ?>"><?php echo $company_name_s ?>:</div>
     <div class="marquee">
       <!-- <a href="http://m.weibo.cn/u/2962998494" target="_blank"> 荣耀呈现，炫闪百大——王励勤鼓楼名品中心金座李宁新品见面会，你来了吗？小编高清大图放送哦~现场还有超划算的活动哦，全场满200元送200元电子券，扫二维码关注李宁，即可获赠王励勤现场抽奖礼品（U盘、李宁腰包等）及专厅现金抵用券（面额不等），你还不快来</a> -->
     </div>

@@ -19,10 +19,10 @@ function timeto($startdate, $enddate)
     </div>
     <div class="form-group col-lg-5">
       <label class="sr-only" for="link"></label>
-      <input class="form-control" title="例如：http://www.baidu.com" name="link" id="link" value="" width="150" placeholder="输入完整的URL链接地址">
+      <input class="form-control" title="" name="link" id="link" value="" width="150" placeholder="URL链接地址">
     </div>
     <div class="form-group col-lg-1">
-      <button type="submit" class="btn btn-info" onClick="return add()">添加</button>
+      <button type="submit" class="btn btn-info" onClick="return cons('确认添加')">添加</button>
     </div>
   </div>
 </form>
@@ -38,7 +38,7 @@ function timeto($startdate, $enddate)
       <th>阅读量</th>
       <th>在线时间</th>
       <th>创建时间</th>
-      <th>操作</th>
+      <th width="100px">操作</th>
     </tr>
   </thead>
   <tbody>
@@ -50,16 +50,16 @@ function timeto($startdate, $enddate)
       echo "<td>".$value['click_num']."</td>";
       echo "<td>".timeto($value['create_time'], date("Y-m-d H:i:s", time()))."</td>";
       echo "<td>".date("Y-m-d", strtotime($value['create_time']))."</td>";
-      echo "<td><a id='url' href='".site_url('home/del/'.$value['id'])."' class='btn btn-danger btn-xs' onclick='return con()'>删除</a></td>";
+      echo "<td>";
+      echo "<a id='url' href='".site_url('home/del/'.$value['id'])."' class='btn btn-danger btn-xs' onclick='return cons(\"确定删除\")'>删除</a>&nbsp;&nbsp;";
+      echo "<a id='url' href='".site_url('home/edit/'.$value['id'])."' class='btn btn-success btn-xs' onclick='return cons(\"确定编辑\")'>编辑</a>";
+      echo "</td>";
     echo "</tr>";
     $i++; } ?>
   </tbody>
 </table>
 <script type="text/javascript">
-function con(){
-  if(!confirm('确定删除?')) return false;
-}
-function add(){
-  if(!confirm('确定添加?')) return false
+function cons(info){
+  if(!confirm(info + '?')) return false;
 }
 </script>

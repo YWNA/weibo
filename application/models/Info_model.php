@@ -32,8 +32,11 @@ class Info_model extends CI_Model  {
 			return FALSE;
 		}
 	}
-	public function get_show_info($cid, $num)
+	public function get_show_info($guid, $num, $t)
 	{
+		$sql   = "SELECT id FROM company where guid = '" . $guid . "'";
+		$ret   = $this->db->query($sql)->row_array();
+		$cid   = $ret['id'];
 		$sql   = 'SELECT * FROM info where cid='.$cid;
 		$ret   = $this->db->query($sql)->result_array();
 		$count = count($ret);
@@ -45,7 +48,9 @@ class Info_model extends CI_Model  {
 		$data = array(
 			'baoguan_num' => $ret['baoguan_num'] + 1,
 		);
-		$this->db->update('info', $data, array('id' => $ret['id']));
+		if ($t == 1) {
+			$this->db->update('info', $data, array('id' => $ret['id']));
+		}
 		return $ret;
 	}
 	public function click_info($id)
@@ -55,5 +60,30 @@ class Info_model extends CI_Model  {
 			'click_num' => $ret['click_num'] + 1,
 		);
 		$this->db->update('info', $data, array('id' => $ret['id']));
+	}
+	public function get_edit_info($cid, $id)
+	{
+		$sql = sprintf("SELECT
+company.id,
+company.company_name_s,
+info.link,
+info.title,
+info.cid,
+info.id as info_id
+FROM
+company ,
+info
+WHERE
+company.id = info.cid AND
+info.cid = %s AND
+info.id  = %s
+", $cid, $id);
+		$ret = $this->db->query($sql)->row_array();
+		return $ret;
+	}
+	public function update($data, $cid, $id)
+	{
+		$this->db->update('info', $data, array('cid' => $cid, 'id' => $id));
+		return $this->db->affected_rows();
 	}
 }
