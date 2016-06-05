@@ -9,7 +9,7 @@ function timeto($startdate, $enddate)
 }
 ?>
 <div class="alert"></div>
-<div class="alert alert-info"><?php echo session_conf('company_name'); ?>企业，添加内容&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a></div>
+<div class="alert alert-info"><?php echo session_conf('company_name'); ?>企业，添加内容&nbsp;&nbsp;&nbsp;<button class="btn btn-info">公司缩写：<?php echo $company['company_name_s']; ?></button>&nbsp;&nbsp;&nbsp;<button class="btn btn-success">公司编号：<?php echo $_SESSION['id']; ?></button>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a></div>
 <hr>
 <form action="" method="post" class="">
   <div class="row">
@@ -28,14 +28,22 @@ function timeto($startdate, $enddate)
 </form>
 <hr>
 
-
-<table class="table table-striped">
+<style type="text/css">
+.link {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width:100px;
+}
+</style>
+<table class="table table-striped" style="table-layout:fixed">
   <thead>
     <tr>
       <th>编号</th>
       <th>标题</th>
       <th>曝光用户量</th>
       <th>阅读量</th>
+      <th>链接地址</th>
       <th>在线时间</th>
       <th>创建时间</th>
       <th width="100px">操作</th>
@@ -44,10 +52,11 @@ function timeto($startdate, $enddate)
   <tbody>
     <?php $i=1; foreach ($ret as $key => $value) {
     echo "<tr>";
-      echo "<td>".$value['id']."</td>";
+      echo "<td>".$company['guid']."</td>";
       echo "<td>".$value['title']."</td>";
       echo "<td>".$value['baoguan_num']."</td>";
       echo "<td>".$value['click_num']."</td>";
+      echo "<td class='link' width='300'>".$value['link']."</td>";
       echo "<td>".timeto($value['create_time'], date("Y-m-d H:i:s", time()))."</td>";
       echo "<td>".date("Y-m-d", strtotime($value['create_time']))."</td>";
       echo "<td>";

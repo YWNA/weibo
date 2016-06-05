@@ -33,6 +33,15 @@ class Company_model extends CI_Model  {
 			return FALSE;
 		}
 	}
+	public function get_company_by_cid($cid)
+	{
+		$ret = $this->db->get_where('company', array('id' => $cid))->row_array();
+		if ($ret) {
+			return $ret;
+		} else {
+			return FALSE;
+		}
+	}
 	public function login($username, $password)
 	{
 		$ret = $this->db->get_where('company', array('username' => $username))->row_array();

@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Info_model');
+		$this->load->model('Company_model');
 		$this->cid = session_conf('id');
 	}
 	public function index()
@@ -19,7 +20,8 @@ class Home extends CI_Controller {
 			redirect('home');
 		}
 		$ret = $this->Info_model->get_info($cid);
-		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret));
+		$company = $this->Company_model->get_company_by_cid($cid);
+		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret, 'company' => $company));
 	}
 	public function edit($id = NULL)
 	{
