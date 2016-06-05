@@ -34,7 +34,7 @@ function timeto($startdate, $enddate)
     <tr>
       <th>编号</th>
       <th>标题</th>
-      <th>曝光率</th>
+      <th>曝光用户量</th>
       <th>阅读量</th>
       <th>在线时间</th>
       <th>创建时间</th>
