@@ -9,7 +9,9 @@ function timeto($startdate, $enddate)
 }
 ?>
 <div class="alert"></div>
-<div class="alert alert-info"><?php echo session_conf('company_name'); ?>企业，添加内容&nbsp;&nbsp;&nbsp;<button class="btn btn-info">公司缩写：<?php echo $company['company_name_s']; ?></button>&nbsp;&nbsp;&nbsp;<span class="btn btn-success">公司编号：<?php echo $company['guid']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a></div>
+<div class="alert alert-info"><?php echo session_conf('company_name'); ?>企业，添加内容&nbsp;&nbsp;&nbsp;<button class="btn btn-info">公司缩写：<?php echo $company['company_name_s']; ?></button>&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a></div>
+<hr>
+<span class="">公司编号：</span><?php echo $company['guid']; ?>
 <hr>
 <form action="" method="post" class="">
   <div class="row">

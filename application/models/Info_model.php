@@ -61,6 +61,17 @@ class Info_model extends CI_Model  {
 		}
 		return $ret;
 	}
+	public function baoguan($id, $cid)
+	{
+		$sql   = 'SELECT * FROM info where id = '.$id.' and cid='.$cid;
+		$ret   = $this->db->query($sql)->row_array();
+		if (empty($ret)) { return false; }
+		$data = array(
+			'baoguan_num' => $ret['baoguan_num'] + 1,
+		);
+		$this->db->update('info', $data, array('id' => $ret['id']));
+		return $this->db->affected_rows();
+	}
 	public function click_info($id)
 	{
 		$ret = $this->db->get_where('info', array('id'=>$id))->row_array();

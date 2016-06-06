@@ -27,24 +27,25 @@ function getCookie(c_name)
   return ""
 }
 $(function(){  
-  function baoguan(guid) {
-    $.post('/welcome/info', {guid:guid},function (data) {
+  function baoguan(info) {
+    $.post('/welcome/info', {id:info.id,cid:info.cid},function (data) {
       console.log(data);
     });
   }
   function run() {
     info = eval(getCookie('info'));
-      console.log(info[num]);
     cookiev = getCookie('guidnum'+num);
     if (cookiev) {} else {
+      console.log(info[num]);
+      baoguan(info[num])
       setCookie('guidnum'+num, guid+num, 10)
     }
-    if (info[num] != null) {
-      var info='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].id+'" target="_blank">'+info[num].title+'</a>';
+    if (info[num].link) {
+      var htmls='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].id+'" target="_blank">'+info[num].title+'</a>';
     } else {
-      var info='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+info[num].title+'</a>';
+      var htmls='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+info[num].title+'</a>';
     }
-    $('.marquee').fadeOut('slow', function(){$('.marquee').html(info)});
+    $('.marquee').fadeOut('slow', function(){$('.marquee').html(htmls)});
     $('.marquee').fadeIn('slow');
     num++;
     if (num == info.length) {num=0};

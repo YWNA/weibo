@@ -31,11 +31,15 @@ class Welcome extends CI_Controller {
 	public function info()
 	{
 		$this->view_override = FALSE;
-		$guid = $this->input->post("guid");
-		$num  = $this->input->post("num");
-		$ret = $this->Info_model->get_show_info($guid, $num, $t);
-		if($ret) $ret['link'] = urlencode( base64_encode($ret['link']) );
-		$this->output->set_content_type('application/json')->set_output(json_encode(array('info' => $ret)));
+		$id = $this->input->post("id");
+		$cid  = $this->input->post("cid");
+		$ret = $this->Info_model->baoguan($id, $cid);
+		if ($ret) {
+			$this->output->set_content_type('application/json')->set_output(json_encode(array('data' => true)));
+		} else {
+			$this->output->set_content_type('application/json')->set_output(json_encode(array('info' => false)));
+		}
+		// if($ret) $ret['link'] = urlencode( base64_encode($ret['link']) );
 	}
 	public function redirect($url, $id)
 	{
