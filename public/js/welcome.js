@@ -27,29 +27,44 @@ function getCookie(c_name)
   return ""
 }
 $(function(){  
-  var a = getCookie('info');
-  console.log(a);
-  function run() {
-    var t
-    cookiev =getCookie('guidnum'+num);
-    if (cookiev) {t=0} else {t=1}
-    $.post('/welcome/info',{guid:guid,num:num,t:t}, function(data){
-      if (cookiev) {} else {
-        setCookie('guidnum'+num, guid+num, 10)
-      }
-      if (num >= data.info.count) {num = 0;};
-      if (data.info == null) {$('.marquee').html('<a style="margin-left: 10px;" href="#">客户ID不存在,请重新配</a>');return;};
-      if (data.info.link) {
-        var info='<a style="margin-left: 10px;" href="/welcome/redirect/'+data.info.link+ '/' + data.info.id+'" target="_blank">'+data.info.title+'</a>';
-      } else {
-        var info='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+data.info.title+'</a>';
-      }
-      $('.marquee').fadeOut('slow', function(){$('.marquee').html(info)});
-      $('.marquee').fadeIn('slow');
-      num++;
-    })
+  function baoguan(guid) {
+    $.post('/welcome/info', {guid:guid},function (data) {
+      console.log(data);
+    });
   }
-  num     =1;
+  function run() {
+    info = eval(getCookie('info'));
+      console.log(info[num]);
+    cookiev = getCookie('guidnum'+num);
+    if (cookiev) {} else {
+      setCookie('guidnum'+num, guid+num, 10)
+    }
+    if (info[num] != null) {
+      var info='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].id+'" target="_blank">'+info[num].title+'</a>';
+    } else {
+      var info='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+info[num].title+'</a>';
+    }
+    $('.marquee').fadeOut('slow', function(){$('.marquee').html(info)});
+    $('.marquee').fadeIn('slow');
+    num++;
+    if (num == info.length) {num=0};
+    // $.post('/welcome/info',{guid:guid,num:num,t:t}, function(data){
+    //   if (cookiev) {} else {
+    //     setCookie('guidnum'+num, guid+num, 10)
+    //   }
+    //   if (num >= data.info.count) {num = 0;};
+    //   if (data.info == null) {$('.marquee').html('<a style="margin-left: 10px;" href="#">客户ID不存在,请重新配</a>');return;};
+    //   if (data.info.link) {
+    //     var info='<a style="margin-left: 10px;" href="/welcome/redirect/'+data.info.link+ '/' + data.info.id+'" target="_blank">'+data.info.title+'</a>';
+    //   } else {
+    //     var info='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+data.info.title+'</a>';
+    //   }
+    //   $('.marquee').fadeOut('slow', function(){$('.marquee').html(info)});
+    //   $('.marquee').fadeIn('slow');
+    //   num++;
+    // })
+  }
+  num     =0;
   guid    =$('.weibo').attr('guid');
   run()
   setInterval(run, 5000)
