@@ -12,6 +12,7 @@ class Info_model extends CI_Model  {
 			'cid' => $cid,
 			'title' => $title,
 			'link' => $link,
+			'guid' => get_guid(4),
 			'create_time' => date('Y-m-d H:i:s', time())
 		);
 		$this->db->insert('info', $data);
@@ -22,6 +23,13 @@ class Info_model extends CI_Model  {
 		$ret = $this->db->get_where('info', array('cid' => $cid))->result_array();
 		return $ret;
 	}
+	public function get_info_by_guid($guid)
+	{
+		$ret = $this->db->get_where('company', array('guid' => $guid))->row_array();
+		$ret = $this->db->get_where('info', array('cid' => $ret['id']))->result_array();
+		return $ret;
+	}
+
 	public function delete_info($cid, $id)
 	{
 		// $this->db->where('cid', $cid)

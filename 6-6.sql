@@ -1,0 +1,1 @@
+ALTER TABLE `weibo`.`info` ADD COLUMN `guid` VARCHAR(255) NULL;

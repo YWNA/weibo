@@ -27,6 +27,8 @@ function getCookie(c_name)
   return ""
 }
 $(function(){  
+  var a = getCookie('info');
+  console.log(a);
   function run() {
     var t
     cookiev =getCookie('guidnum'+num);
