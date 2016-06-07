@@ -44,9 +44,11 @@ class Welcome extends CI_Controller {
 		}
 		// if($ret) $ret['link'] = urlencode( base64_encode($ret['link']) );
 	}
-	public function redirect($url, $id)
+	public function redirect()
 	{
-		$this->Info_model->click_info($id);
+		$url = $_GET['url'];
+		$guid = $_GET['guid'];
+		$this->Info_model->click_info($guid);
 		$url = base64_decode( urldecode($url) );
 		if (!preg_match('/^http:\/\//', $url)) {
 		    $url = "http://" . $url;
