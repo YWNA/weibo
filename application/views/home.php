@@ -62,7 +62,7 @@ function timeto($startdate, $enddate)
       echo "<td>".timeto($value['create_time'], date("Y-m-d H:i:s", time()))."</td>";
       echo "<td>".date("Y-m-d", strtotime($value['create_time']))."</td>";
       echo "<td>";
-      echo "<a id='url' href='".site_url('home/del/'.$value['id'])."' class='btn btn-danger btn-xs' onclick='return cons(\"确定删除\")'>删除</a>&nbsp;&nbsp;";
+      echo "<a id='url' href='".site_url('home/del/'.$value['guid'])."' class='btn btn-danger btn-xs' onclick='return cons(\"确定删除\")'>删除</a>&nbsp;&nbsp;";
       echo "<a id='url' href='".site_url('home/edit/'.$value['guid'])."' class='btn btn-success btn-xs' onclick='return cons(\"确定编辑\")'>编辑</a>";
       echo "</td>";
     echo "</tr>";

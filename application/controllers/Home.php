@@ -46,10 +46,10 @@ class Home extends CI_Controller {
 			show_error('无数据');
 		}
 	}
-	public function del($id)
+	public function del($guid)
 	{
-		$cid = session_conf('id');
-		$ret = $this->Info_model->delete_info($cid, $id);
+		$cid = session_conf('guid');
+		$ret = $this->Info_model->delete_info($cid, $guid);
 		if ($ret) {
 			redirect('home');
 		} else {

@@ -30,10 +30,10 @@ class Info_model extends CI_Model  {
 		return $ret;
 	}
 
-	public function delete_info($cid, $id)
+	public function delete_info($cid, $guid)
 	{
 		// $this->db->where('cid', $cid)
-		$this->db->delete('info', array('cid' => $cid, 'id' => $id));
+		$this->db->delete('info', array('cid' => $cid, 'guid' => $guid));
 		if ($this->db->affected_rows() == 1) {
 			return TRUE;
 		} else {
