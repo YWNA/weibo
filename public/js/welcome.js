@@ -28,7 +28,7 @@ function getCookie(c_name)
 }
 $(function(){  
   function baoguan(info) {
-    $.post('/welcome/info', {id:info.id,cid:info.cid},function (data) {
+    $.post('/welcome/info', {guid:info.guid},function (data) {
       console.log(data);
     });
   }
@@ -41,7 +41,7 @@ $(function(){
       setCookie('guidnum'+num, guid+num, 10)
     }
     if (info[num].link) {
-      var htmls='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].id+'" target="_blank">'+info[num].title+'</a>';
+      var htmls='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].guid+'" target="_blank">'+info[num].title+'</a>';
     } else {
       var htmls='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+info[num].title+'</a>';
     }
