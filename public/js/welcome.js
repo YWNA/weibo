@@ -38,7 +38,7 @@ $(function(){
     if (cookiev) {} else {
       console.log(info[num]);
       baoguan(info[num])
-      setCookie('guidnum'+num, guid+num, 10)
+      setCookie('guidnum'+info[num].guid, info[num].guid, 720)
     }
     if (info[num].link) {
       var htmls='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].guid+'" target="_blank">'+info[num].title+'</a>';
