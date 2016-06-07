@@ -34,7 +34,7 @@ $(function(){
   }
   function run() {
     info = eval(getCookie('info'));
-    cookiev = getCookie('guidnum'+num);
+    cookiev = getCookie('guidnum'+info[num].guid);
     if (cookiev) {} else {
       console.log(info[num]);
       baoguan(info[num])
