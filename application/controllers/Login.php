@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 				if($ret) foreach ($ret as $key => $value) {
 					if($key != 'password') session_conf($key, $value);
 				}
-				redirect('home');
+				redirect('/home');
 			} else {
 				redirect('/');
 			}
