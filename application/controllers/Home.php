@@ -8,48 +8,48 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Info_model');
 		$this->load->model('Company_model');
-		$this->cid = session_conf('id');
+		$this->cid = session_conf('guid');
 	}
 	public function index()
 	{
-		$cid = session_conf('id');
+		$guid = session_conf('guid');
 		if ($_POST) {
 			$title = $this->input->post('title');
 			$link  = $this->input->post('link');
-			$this->Info_model->add_info($cid, $title, $link);
+			$this->Info_model->add_info($guid, $title, $link);
 			redirect('home');
 		}
-		$ret = $this->Info_model->get_info($cid);
-		$company = $this->Company_model->get_company_by_cid($cid);
-		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret, 'company' => $company));
+		$ret = $this->Info_model->get_info($guid);
+		// $company = $this->Company_model->get_company_by_cid($cid);
+		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret));
 	}
-	public function edit($id = NULL)
+	public function edit($guid = NULL)
 	{
 		if ($_POST) {
 			$title   = $this->input->post('title');
 			$link    = $this->input->post('link');
-			$info_id = $this->input->post('id');
+			$guid = $this->input->post('guid');
 			$data = array(
 				'title' => $title,
 				'link' => $link
 			);
-			$ret = $this->Info_model->update($data, $this->cid, $info_id);
+			$ret = $this->Info_model->update($data, $this->cid, $guid);
 			redirect('/');
 			return; 
 		}
-		if (empty($id)) { show_error('缺少参数'); }
-		$cid = session_conf('id');
-		$ret = $this->Info_model->get_edit_info($cid, $id);
+		if (empty($guid)) { show_error('缺少参数'); }
+		$cid = session_conf('guid');
+		$ret = $this->Info_model->get_edit_info($cid, $guid);
 		if ($ret) {
 			$this->load->view('edit', array('title' => '编辑内容', 'ret' => $ret));
 		} else {
 			show_error('无数据');
 		}
 	}
-	public function del($id)
+	public function del($guid)
 	{
-		$cid = session_conf('id');
-		$ret = $this->Info_model->delete_info($cid, $id);
+		$cid = session_conf('guid');
+		$ret = $this->Info_model->delete_info($cid, $guid);
 		if ($ret) {
 			redirect('home');
 		} else {

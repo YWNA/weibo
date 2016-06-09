@@ -16,7 +16,7 @@
     <label for="inputEmail3" class="col-sm-2 control-label">链接地址</label>
     <div class="col-sm-10">
       <input type="string" class="form-control" value="<?php echo $ret['link'] ?>" name="link" placeholder="链接地址">
-      <input type="hidden" name="id" value="<?php echo $ret['info_id'] ?>">
+      <input type="hidden" name="guid" value="<?php echo $ret['guid'] ?>">
     </div>
   </div>
   <div class="form-group">

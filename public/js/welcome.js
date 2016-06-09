@@ -28,20 +28,20 @@ function getCookie(c_name)
 }
 $(function(){  
   function baoguan(info) {
-    $.post('/welcome/info', {id:info.id,cid:info.cid},function (data) {
+    $.post('/welcome/info', {guid:info.guid},function (data) {
       console.log(data);
     });
   }
   function run() {
     info = eval(getCookie('info'));
-    cookiev = getCookie('guidnum'+num);
+    cookiev = getCookie('guidnum'+info[num].guid);
     if (cookiev) {} else {
       console.log(info[num]);
       baoguan(info[num])
-      setCookie('guidnum'+num, guid+num, 10)
+      setCookie('guidnum'+info[num].guid, info[num].guid, 720)
     }
     if (info[num].link) {
-      var htmls='<a style="margin-left: 10px;" href="/welcome/redirect/'+info[num].link+ '/' + info[num].id+'" target="_blank">'+info[num].title+'</a>';
+      var htmls='<a style="margin-left: 10px;" href="/welcome/redirect?url='+info[num].link+ '&guid=' + info[num].guid+'" target="_blank">'+info[num].title+'</a>';
     } else {
       var htmls='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+info[num].title+'</a>';
     }

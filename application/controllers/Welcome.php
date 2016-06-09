@@ -24,6 +24,9 @@ class Welcome extends CI_Controller {
 		$company = $this->Company_model->get_company_name_s($guid);
 		if (empty($company)) { show_error('不存在该用户内容');}
 		$info = $this->Info_model->get_info_by_guid($guid);
+		foreach ($info as $key => $value) {
+			$info[$key]['link'] = urlencode( base64_encode($info[$key]['link']) );
+		}
 		$this->load->helper('cookie');
 		set_cookie('info', json_encode($info), 7200);
 		$this->load->view('welcome', array('guid'=>$guid, 'company_name_s' => $company));
@@ -31,9 +34,9 @@ class Welcome extends CI_Controller {
 	public function info()
 	{
 		$this->view_override = FALSE;
-		$id = $this->input->post("id");
-		$cid  = $this->input->post("cid");
-		$ret = $this->Info_model->baoguan($id, $cid);
+		$guid = $this->input->post("guid");
+		// $cid  = $this->input->post("cid");
+		$ret = $this->Info_model->baoguan($guid);
 		if ($ret) {
 			$this->output->set_content_type('application/json')->set_output(json_encode(array('data' => true)));
 		} else {
@@ -41,10 +44,15 @@ class Welcome extends CI_Controller {
 		}
 		// if($ret) $ret['link'] = urlencode( base64_encode($ret['link']) );
 	}
-	public function redirect($url, $id)
+	public function redirect()
 	{
-		$this->Info_model->click_info($id);
+		$url = $_GET['url'];
+		$guid = $_GET['guid'];
+		$this->Info_model->click_info($guid);
 		$url = base64_decode( urldecode($url) );
-		redirect('http://' . $url);
+		if (!preg_match('/^http:\/\//', $url)) {
+		    $url = "http://" . $url;
+		}
+		redirect($url);
 	}
 }
