@@ -11,7 +11,7 @@
   <div class="loginSection">
 
     <div id="message_container"></div>
-    <form action="" name="login_form" id="login_form" method="post">
+    <form action="<?php echo site_url('login') ?>" name="login_form" id="login_form" method="post">
       <h1>管理系统</h1>
       <div class="inputs">
         <input type="text" name="username" id="login_form_login" class="input" value="" size="20" tabindex="10" placeholder="用户名" autofocus="autofocus" />
