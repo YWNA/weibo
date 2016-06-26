@@ -6,7 +6,7 @@
   </p>
 </div>
 <hr>
-<p class="text-center">当天传播总人数：<?php echo $num; ?></p>
+<p class="text-center" style="color:green;font-size:x-large">当天传播总人数：<?php echo $num; ?></p>
 <hr>
 <form action="" method="post" class="">
   <div class="row">
