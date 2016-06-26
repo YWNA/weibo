@@ -2,9 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Info_model extends CI_Model  {
+	private $cid;
 	public function __construct()
 	{
 		parent::__construct();
+		$this->cid = $_SESSION['guid'];
 	}
 	public function add_info($guid, $title, $link)
 	{
@@ -20,13 +22,15 @@ class Info_model extends CI_Model  {
 	}
 	public function get_info($guid)
 	{
+		$this->db->order_by('sort', 'ASC');
 		$ret = $this->db->get_where('info', array('cid' => $guid))->result_array();
 		return $ret;
 	}
 	public function get_info_by_guid($guid)
 	{
 		$ret = $this->db->get_where('company', array('guid' => $guid))->row_array();
-		$ret = $this->db->get_where('info', array('cid' => $ret['guid']))->result_array();
+		$this->db->order_by('sort', 'ASC');
+		$ret = $this->db->get_where('info', array('cid' => $ret['guid'], 'status' => 1))->result_array();
 		return $ret;
 	}
 
@@ -128,13 +132,25 @@ info.guid  = '%s'
 		}
 		$sql         = sprintf("SELECT baoguan_day FROM company WHERE guid = '%s'",$cid);
 		$baoguan_day = $this->db->query($sql)->row_array();
-		var_dump($baoguan_day);
 		$baoguan_day = unserialize($baoguan_day['baoguan_day']);
 		if (empty($baoguan_day[1])) {
 			return 0;
 		} else {
 			return $baoguan_day[1];
 		}
-
+	}
+	public function update_sort($cid, $sorts)
+	{
+		foreach ($sorts as $key => $value) {
+			$sql = sprintf("UPDATE info SET sort = %s WHERE cid = '%s' AND guid = '%s'", $key, $cid, $value);
+			$this->db->query($sql);
+		}
+		return;
+	}
+	public function sw($guid, $status)
+	{
+		$sql = sprintf("UPDATE info SET status = %s WHERE cid = '%s' AND guid = '%s'", $status, $this->cid, $guid);
+		$this->db->query($sql);
+		return;
 	}
 }

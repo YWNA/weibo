@@ -44,39 +44,61 @@ function timeto($startdate, $enddate)
   width:100px;
 }
 </style>
-<table class="table table-striped" style="table-layout:fixed">
-  <thead>
-    <tr>
-      <th>编号</th>
-      <th>标题</th>
-      <th>累计传播人数</th>
-      <th>阅读量</th>
-      <th>链接地址</th>
-      <th>在线时间</th>
-      <th>创建时间</th>
-      <th width="100px">操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php $i=1; foreach ($ret as $key => $value) {
-    echo "<tr>";
-      echo "<td>".$value['guid']."</td>";
-      echo "<td>".$value['title']."</td>";
-      echo "<td>".$value['baoguan_num']."</td>";
-      echo "<td>".$value['click_num']."</td>";
-      echo "<td class='link' width='300'>".$value['link']."</td>";
-      echo "<td>".timeto($value['create_time'], date("Y-m-d H:i:s", time()))."</td>";
-      echo "<td>".date("Y-m-d", strtotime($value['create_time']))."</td>";
-      echo "<td>";
-      echo "<a id='url' href='".site_url('home/del/'.$value['guid'])."' class='btn btn-danger btn-xs' onclick='return cons(\"确定删除\")'>删除</a>&nbsp;&nbsp;";
-      echo "<a id='url' href='".site_url('home/edit/'.$value['guid'])."' class='btn btn-success btn-xs' onclick='return cons(\"确定编辑\")'>编辑</a>";
-      echo "</td>";
-    echo "</tr>";
-    $i++; } ?>
-  </tbody>
-</table>
+<form action="/home/sort" method="post">
+  <table class="table table-striped" style="table-layout:fixed">
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>标题</th>
+        <th>累计传播人数</th>
+        <th>阅读量</th>
+        <th>链接地址</th>
+        <th>在线时间</th>
+        <th>创建时间</th>
+        <th width="200px">操作</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?php $i=1; foreach ($ret as $key => $value) {
+      echo "<tr>";
+        echo '<input type="hidden" name="sort[]" value="'.$value['guid'].'">';
+        echo "<td>".$value['guid']."</td>";
+        echo "<td>".$value['title']."</td>";
+        echo "<td>".$value['baoguan_num']."</td>";
+        echo "<td>".$value['click_num']."</td>";
+        echo "<td class='link' width='300'>".$value['link']."</td>";
+        echo "<td>".timeto($value['create_time'], date("Y-m-d H:i:s", time()))."</td>";
+        echo "<td>".date("Y-m-d", strtotime($value['create_time']))."</td>";
+        echo "<td>";
+        echo "<a id='url' href='".site_url('home/del/'.$value['guid'])."' class='btn btn-danger btn-xs' onclick='return cons(\"确定删除\")'>删除</a>&nbsp;&nbsp;";
+        echo "<a id='url' href='".site_url('home/edit/'.$value['guid'])."' class='btn btn-success btn-xs' onclick='return cons(\"确定编辑\")'>编辑</a>&nbsp;&nbsp;<hr style='margin-top:10px;margin-bottom:10px'>";
+        if ($value['status'] == 1) {
+          echo "<a id='url' href='".site_url('home/sw/'.$value['guid'])."/0' class='btn btn-danger btn-xs' onclick='return cons(\"确定暂停\")'>暂停</a>&nbsp;&nbsp;";
+        } else {
+          echo "<a id='url' href='".site_url('home/sw/'.$value['guid'])."/1' class='btn btn-success btn-xs' onclick='return cons(\"确定开启\")'>开启</a>&nbsp;&nbsp;";
+        }
+        echo "<button onClick='up($(this))' class='btn btn-success btn-xs up'>上移</button>&nbsp;&nbsp;";
+        echo "<button class='btn btn-info btn-xs down'>下移</button>&nbsp;&nbsp;";
+        echo "</td>";
+      echo "</tr>";
+      $i++; } ?>
+    </tbody>
+  </table>
+  <hr>
+  <p class="text-right">
+    <input type="submit" class="btn btn-warning" value="保存排序">
+  </p>
+</form>
 <script type="text/javascript">
 function cons(info){
   if(!confirm(info + '?')) return false;
+}
+function up (obj) {
+  console.log(obj)
+  var p = obj.parent().parent()
+  p.prev().before('<tr>'+p.html()+'</tr>')
+  p.remove()
+  console.log(p.html());
 }
 </script>

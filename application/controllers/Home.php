@@ -57,4 +57,17 @@ class Home extends CI_Controller {
 			show_error('删除失败');
 		}
 	}
+	public function sort()
+	{
+		if ($_POST) {
+			$sorts = $_POST['sort'];
+			$this->Info_model->update_sort($this->cid, $sorts);
+		}
+		redirect('home');
+	}
+	public function sw($guid, $status)
+	{
+		$this->Info_model->sw($guid, $status);
+		redirect('home');
+	}
 }
