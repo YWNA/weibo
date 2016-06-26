@@ -1,14 +1,3 @@
-<?php
-require __DIR__ . "\..\libraries\php-excel\Classes\PHPExcel.php";
-function timeto($startdate, $enddate)
-{
-  $date   = floor((strtotime($enddate)-strtotime($startdate))/86400);
-  $hour   = floor((strtotime($enddate)-strtotime($startdate))%86400/3600);
-  $minute = floor((strtotime($enddate)-strtotime($startdate))%86400/60);
-  $second = floor((strtotime($enddate)-strtotime($startdate))%86400%60);
-  return $date."天".$hour."小时";
-}
-?>
 <div class="alert"></div>
 <div class="alert alert-info">
   <?php echo session_conf('company_name'); ?>企业&nbsp;&nbsp;&nbsp;<button class="btn btn-info">公司缩写：<?php echo session_conf('company_name_s'); ?></button>&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a>
@@ -88,6 +77,7 @@ function timeto($startdate, $enddate)
   <hr>
   <p class="text-right">
     <input type="submit" class="btn btn-warning" value="保存排序">
+    <a href="/home/excel" class="btn btn-info" value="">导出Excel</a>
   </p>
 </form>
 <script type="text/javascript">
@@ -99,6 +89,5 @@ function up (obj) {
   var p = obj.parent().parent()
   p.prev().before('<tr>'+p.html()+'</tr>')
   p.remove()
-  console.log(p.html());
 }
 </script>

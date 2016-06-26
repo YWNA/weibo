@@ -28,3 +28,11 @@ function get_guid($pw_length = 3){
 	}
 	return time() . $randpwd;
 }
+function timeto($startdate, $enddate)
+{
+  $date   = floor((strtotime($enddate)-strtotime($startdate))/86400);
+  $hour   = floor((strtotime($enddate)-strtotime($startdate))%86400/3600);
+  $minute = floor((strtotime($enddate)-strtotime($startdate))%86400/60);
+  $second = floor((strtotime($enddate)-strtotime($startdate))%86400%60);
+  return $date."天".$hour."小时";
+}

@@ -26,11 +26,12 @@ class Info_model extends CI_Model  {
 		$ret = $this->db->get_where('info', array('cid' => $guid))->result_array();
 		return $ret;
 	}
-	public function get_info_by_guid($guid)
+	public function get_info_by_guid($guid, $status = TRUE)
 	{
 		$ret = $this->db->get_where('company', array('guid' => $guid))->row_array();
 		$this->db->order_by('sort', 'ASC');
-		$ret = $this->db->get_where('info', array('cid' => $ret['guid'], 'status' => 1))->result_array();
+		if ($status) $this->db->where('status', 1);
+		$ret = $this->db->get_where('info', array('cid' => $ret['guid']))->result_array();
 		return $ret;
 	}
 
