@@ -17,7 +17,7 @@ function timeto($startdate, $enddate)
   </p>
 </div>
 <hr>
-<p class="text-center">当天传播总人数：</p>
+<p class="text-center">当天传播总人数：<?php echo $num; ?></p>
 <hr>
 <form action="" method="post" class="">
   <div class="row">

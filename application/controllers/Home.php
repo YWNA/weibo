@@ -20,8 +20,9 @@ class Home extends CI_Controller {
 			redirect('home');
 		}
 		$ret = $this->Info_model->get_info($guid);
+		$num = $this->Info_model->get_day_baoguan($guid);
 		// $company = $this->Company_model->get_company_by_cid($cid);
-		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret));
+		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret, 'num' => $num));
 	}
 	public function edit($guid = NULL)
 	{

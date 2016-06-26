@@ -106,4 +106,35 @@ info.guid  = '%s'
 		$this->db->update('info', $data, array('guid' => $guid, 'cid' => $cid));
 		return $this->db->affected_rows();
 	}
+	public function get_day_baoguan($cid)
+	{
+		$today       = date("Y-m-d", time());
+		$sql         = sprintf("SELECT cid,SUM(baoguan_num) as num FROM info GROUP BY cid HAVING cid = '%s'",$cid);
+		$data        = $this->db->query($sql)->row_array();
+		$sql         = sprintf("SELECT baoguan_day FROM company WHERE guid = '%s'",$cid);
+		$baoguan_day = $this->db->query($sql)->row_array();
+		if (empty($baoguan_day['baoguan_day'])) {
+			$sql = sprintf("UPDATE company SET baoguan_day = '%s' WHERE guid = '%s'", serialize([$today, $data['num'], 0]), $cid);
+			$this->db->query($sql);
+		} else {
+			$baoguan_day = unserialize($baoguan_day['baoguan_day']);
+			if ($baoguan_day[0] != $today) {
+				$sql = sprintf("UPDATE company SET baoguan_day = '%s' WHERE guid = '%s'", serialize([$today, ($data['num']-$baoguan_day[1]), $baoguan_day[1]]), $cid);
+				$this->db->query($sql);
+			} else {
+				$sql = sprintf("UPDATE company SET baoguan_day = '%s' WHERE guid = '%s'", serialize([$today, ($data['num']-$baoguan_day[2]), $baoguan_day[2]]), $cid);
+				$this->db->query($sql);				
+			}
+		}
+		$sql         = sprintf("SELECT baoguan_day FROM company WHERE guid = '%s'",$cid);
+		$baoguan_day = $this->db->query($sql)->row_array();
+		var_dump($baoguan_day);
+		$baoguan_day = unserialize($baoguan_day['baoguan_day']);
+		if (empty($baoguan_day[1])) {
+			return 0;
+		} else {
+			return $baoguan_day[1];
+		}
+
+	}
 }
