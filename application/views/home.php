@@ -67,8 +67,8 @@
         } else {
           echo "<a id='url' href='".site_url('home/sw/'.$value['guid'])."/1' class='btn btn-success btn-xs' onclick='return cons(\"确定开启\")'>开启</a>&nbsp;&nbsp;";
         }
-        echo "<button onClick='up($(this))' class='btn btn-success btn-xs up'>上移</button>&nbsp;&nbsp;";
-        echo "<button class='btn btn-info btn-xs down'>下移</button>&nbsp;&nbsp;";
+        echo "<span onClick='up($(this))' class='btn btn-success btn-xs up'>上移</span>&nbsp;&nbsp;";
+        echo "<span onClick='down($(this))' class='btn btn-info btn-xs down'>下移</span>&nbsp;&nbsp;";
         echo "</td>";
       echo "</tr>";
       $i++; } ?>
@@ -87,7 +87,18 @@ function cons(info){
 function up (obj) {
   console.log(obj)
   var p = obj.parent().parent()
-  p.prev().before('<tr>'+p.html()+'</tr>')
-  p.remove()
+  if (p.prev().text() != "") {
+    p.prev().before('<tr>'+p.html()+'</tr>')
+    p.remove()
+  }
+}
+function down (obj) {
+  console.log(obj)
+  var p = obj.parent().parent()
+  // debugger
+  if (p.next().text() != "") {
+    p.next().after('<tr>'+p.html()+'</tr>')
+    p.remove()
+  }
 }
 </script>

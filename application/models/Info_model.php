@@ -6,7 +6,6 @@ class Info_model extends CI_Model  {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->cid = $_SESSION['guid'];
 	}
 	public function add_info($guid, $title, $link)
 	{
@@ -148,9 +147,9 @@ info.guid  = '%s'
 		}
 		return;
 	}
-	public function sw($guid, $status)
+	public function sw($guid, $cid, $status)
 	{
-		$sql = sprintf("UPDATE info SET status = %s WHERE cid = '%s' AND guid = '%s'", $status, $this->cid, $guid);
+		$sql = sprintf("UPDATE info SET status = %s WHERE cid = '%s' AND guid = '%s'", $status, $cid, $guid);
 		$this->db->query($sql);
 		return;
 	}

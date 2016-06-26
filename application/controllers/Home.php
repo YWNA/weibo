@@ -67,7 +67,7 @@ class Home extends CI_Controller {
 	}
 	public function sw($guid, $status)
 	{
-		$this->Info_model->sw($guid, $status);
+		$this->Info_model->sw($guid, $this->cid , $status);
 		redirect('home');
 	}
 	public function excel()
