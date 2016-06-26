@@ -52,11 +52,12 @@ class Company_model extends CI_Model  {
 		}
 		return FALSE;
 	}
-	public function register($username, $company, $company_s, $password)
+	public function register($username, $category, $company, $company_s, $password)
 	{
 		$data = array(
 			'guid'           => get_guid(),
 			'username'       => $username,
+			'category'       => $category,
 			'company_name'   => $company,
 			'company_name_s' => $company_s,
 			'password'       => password_hash($password, PASSWORD_DEFAULT),

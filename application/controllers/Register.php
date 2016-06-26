@@ -12,6 +12,7 @@ class Register extends CI_Controller {
 		if ($_POST) {
 			$username  = $this->input->post('username');
 			$company   = $this->input->post('company');
+			$category  = $this->input->post('category');
 			$company_s = $this->input->post('company_s');
 			$password1 = $this->input->post('password1');
 			$password2 = $this->input->post('password2');
@@ -19,7 +20,7 @@ class Register extends CI_Controller {
 				show_error('密码输入不相同');
 			}
 			if (!$this->Company_model->if_exists_username($username)) {
-				$this->Company_model->register($username, $company, $company_s, $password1);
+				$this->Company_model->register($username, $category, $company, $company_s, $password1);
 				redirect('/');
 			} else {
 				show_error($username . '已经存在');
