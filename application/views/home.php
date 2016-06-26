@@ -6,7 +6,7 @@
   </p>
 </div>
 <hr>
-<p class="text-center" style="color:green;font-size:x-large">当天传播总人数：<?php echo $num; ?></p>
+<p class="text-center" style="font-size:x-large">当天传播总人数：<span style="color:green;"><?php echo $num; ?></span></p>
 <hr>
 <form action="" method="post" class="">
   <div class="row">
@@ -34,7 +34,7 @@
 }
 </style>
 <form action="/home/sort" method="post">
-  <table class="table table-striped" style="table-layout:fixed">
+  <table class="table" style="table-layout:fixed">
     <thead>
       <tr>
         <th>编号</th>
@@ -49,8 +49,8 @@
     </thead>
 
     <tbody>
-      <?php $i=1; foreach ($ret as $key => $value) {
-      echo "<tr>";
+      <?php $i=1; foreach ($ret as $key => $value) { $class = ($value['status'] == 0) ? 'warning' : '';
+      echo "<tr class=".$class.">";
         echo '<input type="hidden" name="sort[]" value="'.$value['guid'].'">';
         echo "<td>".$value['guid']."</td>";
         echo "<td>".$value['title']."</td>";
@@ -63,9 +63,9 @@
         echo "<a id='url' href='".site_url('home/del/'.$value['guid'])."' class='btn btn-danger btn-xs' onclick='return cons(\"确定删除\")'>删除</a>&nbsp;&nbsp;";
         echo "<a id='url' href='".site_url('home/edit/'.$value['guid'])."' class='btn btn-success btn-xs' onclick='return cons(\"确定编辑\")'>编辑</a>&nbsp;&nbsp;<hr style='margin-top:10px;margin-bottom:10px'>";
         if ($value['status'] == 1) {
-          echo "<a id='url' href='".site_url('home/sw/'.$value['guid'])."/0' class='btn btn-danger btn-xs' onclick='return cons(\"确定暂停\")'>暂停</a>&nbsp;&nbsp;";
+          echo "<a id='open' href='".site_url('home/sw/'.$value['guid'])."/0' data-toggle='tooltip' data-placement='top' title='点击暂停发布' class='btn btn-warning btn-xs' onclick='return cons(\"确定暂停\")'>暂停</a>&nbsp;&nbsp;";
         } else {
-          echo "<a id='url' href='".site_url('home/sw/'.$value['guid'])."/1' class='btn btn-success btn-xs' onclick='return cons(\"确定开启\")'>开启</a>&nbsp;&nbsp;";
+          echo "<a id='close' href='".site_url('home/sw/'.$value['guid'])."/1' data-toggle='tooltip' data-placement='top' title='点击开启发布' class='btn btn-info btn-xs' onclick='return cons(\"确定开启\")'>开启</a>&nbsp;&nbsp;";
         }
         echo "<span onClick='up($(this))' class='btn btn-success btn-xs up'>上移</span>&nbsp;&nbsp;";
         echo "<span onClick='down($(this))' class='btn btn-info btn-xs down'>下移</span>&nbsp;&nbsp;";
@@ -101,4 +101,7 @@ function down (obj) {
     p.remove()
   }
 }
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
