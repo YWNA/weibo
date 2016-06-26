@@ -20,7 +20,7 @@
 
       <div class="actions">
         <input class="submit" id='login_form_submit' type="submit" value="登录" tabindex="100" />
-        <a href="<?php echo site_url('register') ?>" class="submit" id='login_form_submit' style="" tabindex="100">注册</a>
+        <!-- <a href="<?php// echo site_url('register') ?>" class="submit" id='login_form_submit' style="" tabindex="100">注册</a> -->
       </div>
     </form>
   </div>

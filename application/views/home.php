@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . "\..\libraries\php-excel\Classes\PHPExcel.php";
 function timeto($startdate, $enddate)
 {
   $date   = floor((strtotime($enddate)-strtotime($startdate))/86400);
@@ -9,9 +10,14 @@ function timeto($startdate, $enddate)
 }
 ?>
 <div class="alert"></div>
-<div class="alert alert-info"><?php echo session_conf('company_name'); ?>企业，添加内容&nbsp;&nbsp;&nbsp;<button class="btn btn-info">公司缩写：<?php echo session_conf('company_name_s'); ?></button>&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a></div>
+<div class="alert alert-info">
+  <?php echo session_conf('company_name'); ?>企业&nbsp;&nbsp;&nbsp;<button class="btn btn-info">公司缩写：<?php echo session_conf('company_name_s'); ?></button>&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('login/logout'); ?>" class="btn btn-warning">退出</a>
+  <p class="text-right">
+    <span class="">公司编号：</span><?php echo session_conf('guid'); ?>
+  </p>
+</div>
 <hr>
-<span class="">公司编号：</span><?php echo session_conf('guid'); ?>
+<p class="text-center">当天传播总人数：</p>
 <hr>
 <form action="" method="post" class="">
   <div class="row">
@@ -21,7 +27,7 @@ function timeto($startdate, $enddate)
     </div>
     <div class="form-group col-lg-5">
       <label class="sr-only" for="link"></label>
-      <input class="form-control" title="" name="link" id="link" value="" width="150" placeholder="URL链接地址">
+      <input class="form-control" title="" name="link" id="link" value="" width="150" placeholder="跳转URL">
     </div>
     <div class="form-group col-lg-1">
       <button type="submit" class="btn btn-info" onClick="return cons('确认添加')">添加</button>
@@ -43,7 +49,7 @@ function timeto($startdate, $enddate)
     <tr>
       <th>编号</th>
       <th>标题</th>
-      <th>曝光用户量</th>
+      <th>累计传播人数</th>
       <th>阅读量</th>
       <th>链接地址</th>
       <th>在线时间</th>
