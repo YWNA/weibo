@@ -76,13 +76,13 @@ class Home extends CI_Controller {
 		$objPHPExcel = new PHPExcel();
 
 		// Set document properties
-		$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-									 ->setLastModifiedBy("Maarten Balliauw")
-									 ->setTitle("Office 2007 XLSX Test Document")
-									 ->setSubject("Office 2007 XLSX Test Document")
-									 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-									 ->setKeywords("office 2007 openxml php")
-									 ->setCategory("Test result file");
+		$objPHPExcel->getProperties()->setCreator("kf@iwebo.cc")
+									 ->setLastModifiedBy("kf@iwebo.cc")
+									 ->setTitle("info")
+									 ->setSubject("info")
+									 ->setDescription("Design by 杭州微泊网络科技有限公司")
+									 ->setKeywords("info")
+									 ->setCategory("info");
 		$data = $this->Info_model->get_info($this->cid);
 		// Add some data
 		$objPHPExcel->setActiveSheetIndex(0)
@@ -120,7 +120,7 @@ class Home extends CI_Controller {
 
 		// Redirect output to a client’s web browser (Excel5)
 		header('Content-Type: application/vnd.ms-excel');
-		header('Content-Disposition: attachment;filename="01simple.xls"');
+		header('Content-Disposition: attachment;filename="info.xls"');
 		header('Cache-Control: max-age=0');
 		// If you're serving to IE 9, then the following may be needed
 		header('Cache-Control: max-age=1');
