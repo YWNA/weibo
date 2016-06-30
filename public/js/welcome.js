@@ -29,6 +29,14 @@ function getCookie(c_name)
     }
   return ""
 }
+function read (obj) {
+  guid = obj.attr('num');
+  var cookiev = getCookie('readnum'+guid);
+  if (cookiev) {} else {
+    // baoguan(info[num])
+    setCookie('readnum'+guid, 1, 1)
+  }
+}
 $(function(){  
   function baoguan(info) {
     $.post('/welcome/info', {guid:info.guid},function (data) {
@@ -37,14 +45,21 @@ $(function(){
   }
   function run() {
     info = eval(getCookie('info'));
-    cookiev = getCookie('guidnum'+info[num].guid);
+    var cookiev = getCookie('guidnum'+info[num].guid);
     if (cookiev) {} else {
       console.log(info[num]);
       baoguan(info[num])
-      setCookie('guidnum'+info[num].guid, info[num].guid, 720)
+      setCookie('guidnum'+info[num].guid, info[num].guid, 1)
     }
     if (info[num].link) {
-      var htmls='<a style="margin-left: 10px;" href="/welcome/redirect?url='+info[num].link+ '&guid=' + info[num].guid+'" target="_blank">'+info[num].title+'</a>';
+      var readcookie = getCookie('readnum'+info[num].guid);
+      var add;
+      if (readcookie) {
+        add = 0;
+      } else {
+        add = 1
+      }
+      var htmls='<a style="margin-left: 10px;" num='+info[num].guid+' onclick="read($(this))" href="/welcome/redirect?url='+info[num].link+ '&guid=' + info[num].guid+'&add='+add+'" target="_blank">'+info[num].title+'</a>';
     } else {
       var htmls='<a style="margin-left: 10px;" href="#" onclick="return false" target="_blank">'+info[num].title+'</a>';
     }

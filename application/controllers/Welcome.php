@@ -48,7 +48,8 @@ class Welcome extends CI_Controller {
 	{
 		$url = $_GET['url'];
 		$guid = $_GET['guid'];
-		$this->Info_model->click_info($guid);
+		$add = $_GET['add'];
+		if ($add == 1) $this->Info_model->click_info($guid);
 		$url = base64_decode( urldecode($url) );
 		if (!preg_match('/^https:\/\//', $url)) {
 		    $url = "http://" . $url;
