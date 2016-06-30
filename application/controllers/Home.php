@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 		$ret = $this->Info_model->get_info($guid);
 		$num = $this->Info_model->get_day_baoguan($guid);
 		// $company = $this->Company_model->get_company_by_cid($cid);
-		$this->load->view('home', array('title' => '添加内容', 'ret' => $ret, 'num' => $num));
+		$this->load->view('home', array('title' => '微播系统管理后台', 'ret' => $ret, 'num' => $num));
 	}
 	public function edit($guid = NULL)
 	{

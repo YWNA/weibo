@@ -67,8 +67,8 @@
         } else {
           echo "<a id='close' href='".site_url('home/sw/'.$value['guid'])."/1' data-toggle='tooltip' data-placement='top' title='点击开启发布' class='btn btn-info btn-xs' onclick='return cons(\"确定开启\")'>开启</a>&nbsp;&nbsp;";
         }
-        echo "<span onClick='up($(this))' class='btn btn-success btn-xs up'>上移</span>&nbsp;&nbsp;";
-        echo "<span onClick='down($(this))' class='btn btn-info btn-xs down'>下移</span>&nbsp;&nbsp;";
+        echo "<span onClick='up($(this))' class='glyphicon glyphicon-triangle-top up'></span>&nbsp;&nbsp;";
+        echo "<span onClick='down($(this))' class='glyphicon glyphicon-triangle-bottom down'></span>&nbsp;&nbsp;";
         echo "</td>";
       echo "</tr>";
       $i++; } ?>

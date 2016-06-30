@@ -7,9 +7,12 @@ function closeMain(){
 function setCookie(c_name,value,expiredays)
 {
   var exdate=new Date()
-  exdate.setDate(exdate.getDate()+expiredays)
+  // exdate.setDate(exdate.getDate()+expiredays)
+  exdate.setHours(23);
+  exdate.setMinutes(59);
+  exdate.setSeconds(59);
   document.cookie=c_name+ "=" +escape(value)+
-  ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+  ((expiredays==null) ? "" : ";path=/;expires="+exdate.toGMTString())
 }
 function getCookie(c_name)
 {

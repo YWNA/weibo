@@ -28,7 +28,7 @@ class Welcome extends CI_Controller {
 			$info[$key]['link'] = urlencode( base64_encode($info[$key]['link']) );
 		}
 		$this->load->helper('cookie');
-		set_cookie('info', json_encode($info), 7200);
+		set_cookie( array('name' => 'info', 'value' => json_encode($info), 'expire' => 7200) );
 		$this->load->view('welcome', array('guid'=>$guid, 'company_name_s' => $company));
 	}
 	public function info()
