@@ -126,10 +126,14 @@ info.guid  = '%s'
 				$sql = sprintf("UPDATE company SET baoguan_day = '%s' WHERE guid = '%s'", serialize([$today, ($data['num']-$baoguan_day[2]), ($baoguan_day[2]+$baoguan_day[1])]), $cid);
 				$this->db->query($sql);
 			} else {
-				$sql = sprintf("UPDATE company SET baoguan_day = '%s' WHERE guid = '%s'", serialize([$today, ($data['num']-$baoguan_day[2]), $baoguan_day[2]]), $cid);
-				$this->db->query($sql);				
 			}
+			$sql         = sprintf("SELECT baoguan_day FROM company WHERE guid = '%s'",$cid);
+			$baoguan_day = $this->db->query($sql)->row_array();
+			$baoguan_day = unserialize($baoguan_day['baoguan_day']);
+			$sql = sprintf("UPDATE company SET baoguan_day = '%s' WHERE guid = '%s'", serialize([$today, ($data['num']-$baoguan_day[2]), $baoguan_day[2]]), $cid);
+			$this->db->query($sql);
 		}
+		
 		$sql         = sprintf("SELECT baoguan_day FROM company WHERE guid = '%s'",$cid);
 		$baoguan_day = $this->db->query($sql)->row_array();
 		$baoguan_day = unserialize($baoguan_day['baoguan_day']);
