@@ -45,6 +45,7 @@ $(function(){
   }
   function run() {
     info = eval(getCookie('info'));
+    if (!info) {alert('浏览器无法写入Cookie')};
     var cookiev = getCookie('guidnum'+info[num].guid);
     if (cookiev) {} else {
       console.log(info[num]);
