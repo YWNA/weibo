@@ -45,7 +45,7 @@ $(function(){
   }
   function run() {
     info = eval(getCookie('info'));
-    if (!info) {alert('Cookie Error');location.reload();};
+    // if (!info) {alert('Cookie Error');location.reload();};
     var cookiev = getCookie('guidnum'+info[num].guid);
     if (cookiev) {} else {
       console.log(info[num]);

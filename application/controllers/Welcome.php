@@ -24,6 +24,7 @@ class Welcome extends CI_Controller {
 		$company = $this->Company_model->get_company_name_s($guid);
 		if (empty($company)) { show_error('不存在该用户内容');}
 		$info = $this->Info_model->get_info_by_guid($guid);
+		if (empty($info)) log_message('error', '向数据库中获取info信息失败，guid：'.$guid);
 		foreach ($info as $key => $value) {
 			$info[$key]['link'] = urlencode( base64_encode($info[$key]['link']) );
 		}
