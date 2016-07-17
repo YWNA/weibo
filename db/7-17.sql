@@ -1,0 +1,1 @@
+ALTER TABLE `company` CHANGE `company_name_s` `company_name_s` VARCHAR(6) CHARSET utf8 COLLATE utf8_unicode_ci NULL; 

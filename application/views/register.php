@@ -21,7 +21,7 @@
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">公司名称缩写</label>
     <div class="col-sm-10">
-      <input type="string" required class="form-control" maxlength="4" name="company_s" placeholder="公司名称缩写，只能填写四个字">
+      <input type="string" required class="form-control" maxlength="6" name="company_s" placeholder="公司名称缩写，只能填写四个字">
     </div>
   </div>
   <div class="form-group">
